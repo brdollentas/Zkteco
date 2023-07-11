@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from zk import ZK, const
 from .models import *
-import numpy as np
-import re
 # Create your views here.
 def index(request):
     conn = None
@@ -11,7 +9,6 @@ def index(request):
     # create ZK instance
         zk = zkInit(device.host, int(device.port))
         other_device = BiometricDevices.objects.filter(status = 1).exclude(id = device.id)
-        print(other_device)
         try:
             # connect to device
             conn = zk.connect()
